@@ -11,9 +11,9 @@ namespace ConsoleApp4
     {
         static void Main(string[] args)
         {
-            Members Igor = new Members("Igor", 36);
+           // Members Igor = new Members("Igor", 36);
             windowone I = new windowone();
-            AddNewMember w = new AddNewMember(I);
+            AddNewMember w = new AddNewMember();
             Application.Run(w);
             Application.Run(I);
             

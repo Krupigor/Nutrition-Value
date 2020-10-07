@@ -12,28 +12,71 @@ namespace ConsoleApp4
 {
     public partial class AddNewMember : Form
     {
-        windowone winone;
         
-        public AddNewMember(windowone win1)
+        public AddNewMember()
         {
             InitializeComponent();
-            winone = win1;
+            
             
         }
 
         private void buttonOkaddnewmemb_Click(object sender, EventArgs e)
         {
-            int age=Int32.Parse(textBoxAgeAddnewMem.Text);
-            Members ID = new Members(textBoxNameAddNewMem.Text, age);
-            
+            if (textBoxNameAddNewMem.TextLength >= 1 & textBoxAgeAddnewMem.TextLength >= 1)
+            {
+                if (checkBoxFemale.Checked | checkBoxMale.Checked)
+                {
+                    int age = Int32.Parse(textBoxAgeAddnewMem.Text);
+                    bool male = true;
+                    if (checkBoxMale.Checked)
+                    {
+
+                    }
+                    else if (checkBoxFemale.Checked)
+                    {
+                        male = false;
+                    }
+
+                    Members ID = new Members(textBoxNameAddNewMem.Text, age, male);
+
+                    
+                    Members.listMembers.Add(ID);
+
+                    Close();
+
+
+                }
+                else
+                {
+                    labelWarningFM.Visible = true;
+
+                }
+
+                
+            }
+            else
+            {
+
+                labelWarningNA.Visible = true;
+            }
            
-            winone.ChangeTextNameandAge(textBoxNameAddNewMem.Text, age);
-            Members.listMembers.Add(ID);
-          
-            Close();
             
             
             
+        }
+
+        private void checkBoxFemale_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBoxMale.Checked = false;
+            labelWarningFM.Visible = false;
+
+        }
+
+        private void checkBoxMale_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBoxFemale.Checked = false;
+            labelWarningFM.Visible = false;
+
         }
     }
 }
